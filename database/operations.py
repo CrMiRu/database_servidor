@@ -44,15 +44,24 @@ def initialize_table():
 
 
 def get_all_series():
-    """Returns all rows from the database."""
+    """Returns all rows AND column names from the database."""
     conn, cur = None, None
     try:
         conn, cur = get_db_connection()
         cur.execute("SELECT * FROM demo_series ORDER BY id ASC;")
-        return cur.fetchall()
+
+        # 1. Capture the column names from the cursor description
+        # desc[0] is the name of the column
+        columns = [desc[0] for desc in cur.description]
+
+        # 2. Capture the actual row data
+        data = cur.fetchall()
+
+        # 3. Return BOTH as a tuple
+        return data, columns
     except Exception as e:
         print(f"Error fetching data: {e}")
-        return []
+        return [], []
     finally:
         if cur:
             cur.close()

@@ -20,7 +20,7 @@ def main():
     # 3. Modify a record of the table, for example rating
     update_table("Stranger Things", 9.2)
 
-    # 4. Bulk update multiple records at once
+    # 4. Bulk update multiple records at once on a new column
     updates = [
         ("AMC/Netflix", "Breaking Bad"),
         ("Netflix", "Stranger Things"),
@@ -30,7 +30,7 @@ def main():
     bulk_update(updates)
 
     # 5. Print the records added to the terminal
-    rows = get_all_series()
+    rows, columns = get_all_series()
     print("\n--- Current Records ---")
     for row in rows:
         print(row)

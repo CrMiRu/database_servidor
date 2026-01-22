@@ -21,6 +21,16 @@ def initialize_table():
         cur.execute(query)
         conn.commit()
         print("Table 'demo_series' initialized successfully.")
+
+        # Add a new column to the table
+        cur.execute(
+            """
+            ALTER TABLE demo_series 
+            ADD COLUMN IF NOT EXISTS streaming_platform VARCHAR(30);
+        """
+        )
+        conn.commit()
+        print("✅ Table and columns initialized successfully.")
     except Exception as e:
         if conn:
             conn.rollback()
@@ -75,15 +85,15 @@ def insert_series(series_list):
             conn.close()
 
 
-def update_table(title, new_rating):
+def update_table(title, new_value):
     """Updates a specific cell from the table"""
     conn, cur = None, None
     try:
         conn, cur = get_db_connection()
         query = "UPDATE demo_series SET rating = %s WHERE title = %s;"
-        cur.execute(query, (new_rating, title))
+        cur.execute(query, (new_value, title))
         conn.commit()
-        print(f"Updated {title} to rating {new_rating}")
+        print(f"Updated {title} to rating {new_value}")
     except Exception as e:
         if conn:
             conn.rollback()
@@ -104,6 +114,26 @@ def delete_series(title):
         cur.execute(query, (title,))
         conn.commit()
         print(f"Deleted {title} from database.")
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        raise e
+    finally:
+        if cur:
+            cur.close()
+        if conn:
+            conn.close()
+
+
+def bulk_update(updates):
+    """Updates multiple records at once based on a new column(s) create in initialize_table()"""
+    conn, cur = None, None
+    try:
+        conn, cur = get_db_connection()
+        query = "UPDATE demo_series SET streaming_platform = %s WHERE title = %s;"
+        cur.executemany(query, updates)
+        conn.commit()
+        print(f"Bulk updated {len(updates)} platform records.")
     except Exception as e:
         if conn:
             conn.rollback()

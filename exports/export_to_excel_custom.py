@@ -3,6 +3,7 @@ import psycopg2
 import sys
 import os
 from pathlib import Path
+from datetime import datetime
 
 # 1. Setup Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,7 +90,8 @@ def export_custom_table():
 
         # Save to Excel
         df = pd.DataFrame(data, columns=columns)
-        filename = f"{target_db}_{target_table}_export.xlsx"
+        timestamp = datetime.now().strftime("%Y-%m-%d")
+        filename = f"custom_{target_db}_{target_table}_{timestamp}.xlsx"
         output_path = EXPORTS_DIR / filename
 
         df.to_excel(output_path, index=False)

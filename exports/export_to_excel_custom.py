@@ -88,13 +88,22 @@ def export_custom_table():
             print(f"⚠️ Table '{target_table}' is empty.")
             return
 
-        # Save to Excel
+        # 1. Create DataFrame
         df = pd.DataFrame(data, columns=columns)
+
+        # --- Clean timezones from data in order to export to Excel (timezones are not supported) ---
+        # We loop through each column to find datetimes with timezones
+        for col in df.select_dtypes(include=["datetimetz", "datetime"]):
+            # This removes the timezone (e.g., +02:00) but keeps the local time
+            df[col] = df[col].dt.tz_localize(None)
+
+        # 2. Save to Excel
         timestamp = datetime.now().strftime("%Y-%m-%d")
         filename = f"custom_{target_db}_{target_table}_{timestamp}.xlsx"
         output_path = EXPORTS_DIR / filename
 
-        df.to_excel(output_path, index=False)
+        df.to_excel(output_path, index=False, engine="openpyxl")
+
         print(f"\n✅ Success! Data from '{target_db}.{target_table}' exported to:")
         print(f"📍 {output_path}")
 

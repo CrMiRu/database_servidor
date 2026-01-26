@@ -1,0 +1,151 @@
+# Level 1: Categories (Superior Levels) (e.g.: NPE_ratio, ROE, etc.) --> stored in "hierarchy" table
+# Level 2: Metrics (Intermediate Levels) (e.g.: EBA.NPE_ratio.ES, etc.) --> stored in "metrics" table
+# Level 3: Countries (Lowest Levels) --> stored in "metrics" table as well
+
+EBA_Metrics:
+  NPE_ratio:
+    EBA.NPE_ratio.DE: "Alemania"
+    EBA.NPE_ratio.ES: "España"
+    EBA.NPE_ratio.EU: "Unión Europea"
+    EBA.NPE_ratio.FR: "Francia"
+    EBA.NPE_ratio.IT: "Italia"
+    
+  NPL_ratio:
+    EBA.NPL_ratio.DE: "Alemania"
+    EBA.NPL_ratio.ES: "España"
+    EBA.NPL_ratio.EU: "Unión Europea"
+    EBA.NPL_ratio.FR: "Francia"
+    EBA.NPL_ratio.IT: "Italia"
+
+  Ratio_de_cobertura:
+    EBA.Ratio_de_cobertura.DE: "Alemania"
+    EBA.Ratio_de_cobertura.ES: "España"
+    EBA.Ratio_de_cobertura.EU: "Unión Europea"
+    EBA.Ratio_de_cobertura.FR: "Francia"
+    EBA.Ratio_de_cobertura.IT: "Italia"
+
+  Ratio_de_indulgencia:
+    EBA.Ratio_de_indulgencia.DE: "Alemania"
+    EBA.Ratio_de_indulgencia.ES: "España"
+    EBA.Ratio_de_indulgencia.EU: "Unión Europea"
+    EBA.Ratio_de_indulgencia.FR: "Francia"
+    EBA.Ratio_de_indulgencia.IT: "Italia"
+
+  Loan_to_Deposit_ratio:
+    EBA.Loan_to_Deposit_ratio.DE: "Alemania"
+    EBA.Loan_to_Deposit_ratio.ES: "España"
+    EBA.Loan_to_Deposit_ratio.EU: "Unión Europea"
+    EBA.Loan_to_Deposit_ratio.FR: "Francia"
+    EBA.Loan_to_Deposit_ratio.IT: "Italia"
+
+  Ratio_de_garantía:
+    EBA.Ratio_de_garantía.DE: "Alemania"
+    EBA.Ratio_de_garantía.ES: "España"
+    EBA.Ratio_de_garantía.EU: "Unión Europea"
+    EBA.Ratio_de_garantía.FR: "Francia"
+    EBA.Ratio_de_garantía.IT: "Italia"
+
+  LCR:
+    EBA.LCR.DE: "Alemania"
+    EBA.LCR.ES: "España"
+    EBA.LCR.EU: "Unión Europea"
+    EBA.LCR.FR: "Francia"
+    EBA.LCR.IT: "Italia"
+
+  NSFR:
+    EBA.NSFR.DE: "Alemania"
+    EBA.NSFR.ES: "España"
+    EBA.NSFR.EU: "Unión Europea"
+    EBA.NSFR.FR: "Francia"
+    EBA.NSFR.IT: "Italia"
+
+  ROE:
+    EBA.ROE.DE: "Alemania"
+    EBA.ROE.ES: "España"
+    EBA.ROE.EU: "Unión Europea"
+    EBA.ROE.FR: "Francia"
+    EBA.ROE.IT: "Italia"
+
+  Ratio_de_eficiencia:
+    EBA.Ratio_de_eficiencia.DE: "Alemania"
+    EBA.Ratio_de_eficiencia.ES: "España"
+    EBA.Ratio_de_eficiencia.EU: "Unión Europea"
+    EBA.Ratio_de_eficiencia.FR: "Francia"
+    EBA.Ratio_de_eficiencia.IT: "Italia"
+
+  ROA:
+    EBA.ROA.DE: "Alemania"
+    EBA.ROA.ES: "España"
+    EBA.ROA.EU: "Unión Europea"
+    EBA.ROA.FR: "Francia"
+    EBA.ROA.IT: "Italia"
+
+  porc_de_ingresos_netos_de_intereses:
+    "EBA.porc_de_ingresos_netos_de_intereses.DE": "Alemania"
+    "EBA.porc_de_ingresos_netos_de_intereses.ES": "España"
+    "EBA.porc_de_ingresos_netos_de_intereses.EU": "Unión Europea"
+    "EBA.porc_de_ingresos_netos_de_intereses.FR": "Francia"
+    "EBA.porc_de_ingresos_netos_de_intereses.IT": "Italia"
+
+  porc_de_ingresos_por_comisiones:
+    "EBA.porc_de_ingresos_por_comisiones.DE": "Alemania"
+    "EBA.porc_de_ingresos_por_comisiones.ES": "España"
+    "EBA.porc_de_ingresos_por_comisiones.EU": "Unión Europea"
+    "EBA.porc_de_ingresos_por_comisiones.FR": "Francia"
+    "EBA.porc_de_ingresos_por_comisiones.IT": "Italia"
+
+  porc_de_ingresos_trading:
+    "EBA.porc_de_ingresos_trading.DE": "Alemania"
+    "EBA.porc_de_ingresos_trading.ES": "España"
+    "EBA.porc_de_ingresos_trading.EU": "Unión Europea"
+    "EBA.porc_de_ingresos_trading.FR": "Francia"
+    "EBA.porc_de_ingresos_trading.IT": "Italia"
+
+  Margen_neto_de_intereses:
+    EBA.Margen_neto_de_intereses.DE: "Alemania"
+    EBA.Margen_neto_de_intereses.ES: "España"
+    EBA.Margen_neto_de_intereses.EU: "Unión Europea"
+    EBA.Margen_neto_de_intereses.FR: "Francia"
+    EBA.Margen_neto_de_intereses.IT: "Italia"
+
+  Cost_of_risk:
+    EBA.Cost_of_risk.DE: "Alemania"
+    EBA.Cost_of_risk.ES: "España"
+    EBA.Cost_of_risk.EU: "Unión Europea"
+    EBA.Cost_of_risk.FR: "Francia"
+    EBA.Cost_of_risk.IT: "Italia"
+
+  Ratio_de_capital_Tier_1:
+    EBA.Ratio_de_capital_Tier_1.DE: "Alemania"
+    EBA.Ratio_de_capital_Tier_1.ES: "España"
+    EBA.Ratio_de_capital_Tier_1.EU: "Unión Europea"
+    EBA.Ratio_de_capital_Tier_1.FR: "Francia"
+    EBA.Ratio_de_capital_Tier_1.IT: "Italia"
+
+  Ratio_de_apalancamiento:
+    EBA.Ratio_de_apalancamiento.DE: "Alemania"
+    EBA.Ratio_de_apalancamiento.ES: "España"
+    EBA.Ratio_de_apalancamiento.EU: "Unión Europea"
+    EBA.Ratio_de_apalancamiento.FR: "Francia"
+    EBA.Ratio_de_apalancamiento.IT: "Italia"
+
+  Ratio_de_capital_total:
+    EBA.Ratio_de_capital_total.DE: "Alemania"
+    EBA.Ratio_de_capital_total.ES: "España"
+    EBA.Ratio_de_capital_total.EU: "Unión Europea"
+    EBA.Ratio_de_capital_total.FR: "Francia"
+    EBA.Ratio_de_capital_total.IT: "Italia"
+
+  Ratio_CET_1_Fully_Loaded:
+    EBA.Ratio_CET_1_Fully_Loaded.DE: "Alemania"
+    EBA.Ratio_CET_1_Fully_Loaded.ES: "España"
+    EBA.Ratio_CET_1_Fully_Loaded.EU: "Unión Europea"
+    EBA.Ratio_CET_1_Fully_Loaded.FR: "Francia"
+    EBA.Ratio_CET_1_Fully_Loaded.IT: "Italia"
+
+  Ratio_CET_1:
+    EBA.Ratio_CET_1.DE: "Alemania"
+    EBA.Ratio_CET_1.ES: "España"
+    EBA.Ratio_CET_1.EU: "Unión Europea"
+    EBA.Ratio_CET_1.FR: "Francia"
+    EBA.Ratio_CET_1.IT: "Italia"

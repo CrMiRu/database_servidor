@@ -1,0 +1,312 @@
+metricas bancos:
+  ingresos_netos_intereses:
+    MB.ingresos_netos_intereses.SAN: "Santander"
+    MB.ingresos_netos_intereses.BBVA: "BBVA"
+    MB.ingresos_netos_intereses.CABK: "CaixaBank"
+    MB.ingresos_netos_intereses.SAB: "Sabadell"
+    MB.ingresos_netos_intereses.BKT: "Bankinter"
+    MB.ingresos_netos_intereses.UNI: "Unicaja"
+
+  ingresos_netos_intereses_esp:
+    MB.ingresos_netos_intereses_esp.SAN: "Santander (España)"
+    MB.ingresos_netos_intereses_esp.BBVA: "BBVA (España)"
+    MB.ingresos_netos_intereses_esp.CABK: "CaixaBank (España)"
+    MB.ingresos_netos_intereses_esp.SAB: "Sabadell (España)"
+    MB.ingresos_netos_intereses_esp.BKT: "Bankinter (España)"
+    MB.ingresos_netos_intereses_esp.UNI: "Unicaja (España)"
+
+  Comisiones:
+    MB.Comisiones.SAN: "Santander"
+    MB.Comisiones.BBVA: "BBVA"
+    MB.Comisiones.CABK: "CaixaBank"
+    MB.Comisiones.SAB: "Sabadell"
+    MB.Comisiones.BKT: "Bankinter"
+    MB.Comisiones.UNI: "Unicaja"
+
+  Comisiones_esp:
+    MB.Comisiones_esp.SAN: "Santander (España)"
+    MB.Comisiones_esp.BBVA: "BBVA (España)"
+    MB.Comisiones_esp.CABK: "CaixaBank (España)"
+    MB.Comisiones_esp.SAB: "Sabadell (España)"
+    MB.Comisiones_esp.BKT: "Bankinter (España)"
+    MB.Comisiones_esp.UNI: "Unicaja (España)"
+
+  margen_bruto:
+    MB.margen_bruto.SAN: "Santander"
+    MB.margen_bruto.BBVA: "BBVA"
+    MB.margen_bruto.CABK: "CaixaBank"
+    MB.margen_bruto.SAB: "Sabadell"
+    MB.margen_bruto.BKT: "Bankinter"
+    MB.margen_bruto.UNI: "Unicaja"
+
+  gastos_explotación:
+    MB.gastos_explotación.SAN: "Santander"
+    MB.gastos_explotación.BBVA: "BBVA"
+    MB.gastos_explotación.CABK: "CaixaBank"
+    MB.gastos_explotación.SAB: "Sabadell"
+    MB.gastos_explotación.BKT: "Bankinter"
+    MB.gastos_explotación.UNI: "Unicaja"
+
+  gastos_explotación_esp:
+    MB.gastos_explotación_esp.SAN: "Santander (España)"
+    MB.gastos_explotación_esp.BBVA: "BBVA (España)"
+    MB.gastos_explotación_esp.CABK: "CaixaBank (España)"
+    MB.gastos_explotación_esp.SAB: "Sabadell (España)"
+    MB.gastos_explotación_esp.BKT: "Bankinter (España)"
+    MB.gastos_explotación_esp.UNI: "Unicaja (España)"
+
+  margen_explotación:
+    MB.margen_explotación.SAN: "Santander"
+    MB.margen_explotación.BBVA: "BBVA"
+    MB.margen_explotación.CABK: "CaixaBank"
+    MB.margen_explotación.SAB: "Sabadell"
+    MB.margen_explotación.BKT: "Bankinter"
+    MB.margen_explotación.UNI: "Unicaja"
+
+  deterioros_y_provisiones:
+    MB.deterioros_y_provisiones.SAN: "Santander"
+    MB.deterioros_y_provisiones.BBVA: "BBVA"
+    MB.deterioros_y_provisiones.CABK: "CaixaBank"
+    MB.deterioros_y_provisiones.SAB: "Sabadell"
+    MB.deterioros_y_provisiones.BKT: "Bankinter"
+    MB.deterioros_y_provisiones.UNI: "Unicaja"
+
+  deterioros_y_provisiones_esp:
+    MB.deterioros_y_provisiones_esp.SAN: "Santander (España)"
+    MB.deterioros_y_provisiones_esp.BBVA: "BBVA (España)"
+    MB.deterioros_y_provisiones_esp.CABK: "CaixaBank (España)"
+    MB.deterioros_y_provisiones_esp.SAB: "Sabadell (España)"
+    MB.deterioros_y_provisiones_esp.BKT: "Bankinter (España)"
+    MB.deterioros_y_provisiones_esp.UNI: "Unicaja (España)"
+
+  resultado_antes_impuestos:
+    MB.resultado_antes_impuestos.SAN: "Santander"
+    MB.resultado_antes_impuestos.BBVA: "BBVA"
+    MB.resultado_antes_impuestos.CABK: "CaixaBank"
+    MB.resultado_antes_impuestos.SAB: "Sabadell"
+    MB.resultado_antes_impuestos.BKT: "Bankinter"
+    MB.resultado_antes_impuestos.UNI: "Unicaja"
+
+  impuesto_sociedades:
+    MB.impuesto_sociedades.SAN: "Santander"
+    MB.impuesto_sociedades.BBVA: "BBVA"
+    MB.impuesto_sociedades.CABK: "CaixaBank"
+    MB.impuesto_sociedades.SAB: "Sabadell"
+    MB.impuesto_sociedades.BKT: "Bankinter"
+    MB.impuesto_sociedades.UNI: "Unicaja"
+
+  atribuible_minoritarios:
+    MB.atribuible_minoritarios.SAN: "Santander"
+    MB.atribuible_minoritarios.BBVA: "BBVA"
+    MB.atribuible_minoritarios.CABK: "CaixaBank"
+    MB.atribuible_minoritarios.SAB: "Sabadell"
+    MB.atribuible_minoritarios.BKT: "Bankinter"
+    MB.atribuible_minoritarios.UNI: "Unicaja"
+
+  resultado_neto:
+    MB.resultado_neto.SAN: "Santander"
+    MB.resultado_neto.BBVA: "BBVA"
+    MB.resultado_neto.CABK: "CaixaBank"
+    MB.resultado_neto.SAB: "Sabadell"
+    MB.resultado_neto.BKT: "Bankinter"
+    MB.resultado_neto.UNI: "Unicaja"
+
+  resultado_neto_esp:
+    MB.resultado_neto_esp.SAN: "Santander (España)"
+    MB.resultado_neto_esp.BBVA: "BBVA (España)"
+    MB.resultado_neto_esp.CABK: "CaixaBank (España)"
+    MB.resultado_neto_esp.SAB: "Sabadell (España)"
+    MB.resultado_neto_esp.BKT: "Bankinter (España)"
+    MB.resultado_neto_esp.UNI: "Unicaja (España)"
+
+  roa:
+    MB.roa.SAN: "Santander"
+    MB.roa.BBVA: "BBVA"
+    MB.roa.CABK: "CaixaBank"
+    MB.roa.SAB: "Sabadell"
+    MB.roa.BKT: "Bankinter"
+    MB.roa.UNI: "Unicaja"
+
+  roe:
+    MB.roe.SAN: "Santander"
+    MB.roe.BBVA: "BBVA"
+    MB.roe.CABK: "CaixaBank"
+    MB.roe.SAB: "Sabadell"
+    MB.roe.BKT: "Bankinter"
+    MB.roe.UNI: "Unicaja"
+
+  ratio_eficiencia:
+    MB.ratio_eficiencia.SAN: "Santander"
+    MB.ratio_eficiencia.BBVA: "BBVA"
+    MB.ratio_eficiencia.CABK: "CaixaBank"
+    MB.ratio_eficiencia.SAB: "Sabadell"
+    MB.ratio_eficiencia.BKT: "Bankinter"
+    MB.ratio_eficiencia.UNI: "Unicaja"
+
+  clientes:
+    MB.clientes.SAN: "Santander"
+    MB.clientes.BBVA: "BBVA"
+    MB.clientes.CABK: "CaixaBank"
+    MB.clientes.SAB: "Sabadell"
+    MB.clientes.BKT: "Bankinter"
+    MB.clientes.UNI: "Unicaja"
+
+  empleados:
+    MB.empleados.SAN: "Santander"
+    MB.empleados.BBVA: "BBVA"
+    MB.empleados.CABK: "CaixaBank"
+    MB.empleados.SAB: "Sabadell"
+    MB.empleados.BKT: "Bankinter"
+    MB.empleados.UNI: "Unicaja"
+
+  oficinas:
+    MB.oficinas.SAN: "Santander"
+    MB.oficinas.BBVA: "BBVA"
+    MB.oficinas.CABK: "CaixaBank"
+    MB.oficinas.SAB: "Sabadell"
+    MB.oficinas.BKT: "Bankinter"
+    MB.oficinas.UNI: "Unicaja"
+
+  oficinas_esp:
+    MB.oficinas_esp.SAN: "Santander (España)"
+    MB.oficinas_esp.BBVA: "BBVA (España)"
+    MB.oficinas_esp.CABK: "CaixaBank (España)"
+    MB.oficinas_esp.SAB: "Sabadell (España)"
+    MB.oficinas_esp.BKT: "Bankinter (España)"
+    MB.oficinas_esp.UNI: "Unicaja (España)"
+
+  activo_total:
+    MB.activo_total.SAN: "Santander"
+    MB.activo_total.BBVA: "BBVA"
+    MB.activo_total.CABK: "CaixaBank"
+    MB.activo_total.SAB: "Sabadell"
+    MB.activo_total.BKT: "Bankinter"
+    MB.activo_total.UNI: "Unicaja"
+
+  depósitos:
+    MB.depósitos.SAN: "Santander"
+    MB.depósitos.BBVA: "BBVA"
+    MB.depósitos.CABK: "CaixaBank"
+    MB.depósitos.SAB: "Sabadell"
+    MB.depósitos.BKT: "Bankinter"
+    MB.depósitos.UNI: "Unicaja"
+
+  cuentas_corrientes:
+    MB.cuentas_corrientes.SAN: "Santander"
+    MB.cuentas_corrientes.BBVA: "BBVA"
+    MB.cuentas_corrientes.CABK: "CaixaBank"
+    MB.cuentas_corrientes.SAB: "Sabadell"
+    MB.cuentas_corrientes.BKT: "Bankinter"
+    MB.cuentas_corrientes.UNI: "Unicaja"
+
+  depósitos_plazo:
+    MB.depósitos_plazo.SAN: "Santander"
+    MB.depósitos_plazo.BBVA: "BBVA"
+    MB.depósitos_plazo.CABK: "CaixaBank"
+    MB.depósitos_plazo.SAB: "Sabadell"
+    MB.depósitos_plazo.BKT: "Bankinter"
+    MB.depósitos_plazo.UNI: "Unicaja"
+
+  fuera_de_balance:
+    MB.fuera_de_balance.SAN: "Santander"
+    MB.fuera_de_balance.BBVA: "BBVA"
+    MB.fuera_de_balance.CABK: "CaixaBank"
+    MB.fuera_de_balance.SAB: "Sabadell"
+    MB.fuera_de_balance.BKT: "Bankinter"
+    MB.fuera_de_balance.UNI: "Unicaja"
+
+  crédito_total:
+    MB.crédito_total.SAN: "Santander"
+    MB.crédito_total.BBVA: "BBVA"
+    MB.crédito_total.CABK: "CaixaBank"
+    MB.crédito_total.SAB: "Sabadell"
+    MB.crédito_total.BKT: "Bankinter"
+    MB.crédito_total.UNI: "Unicaja"
+
+  npl_ratio:
+    MB.npl_ratio.SAN: "Santander"
+    MB.npl_ratio.BBVA: "BBVA"
+    MB.npl_ratio.CABK: "CaixaBank"
+    MB.npl_ratio.SAB: "Sabadell"
+    MB.npl_ratio.BKT: "Bankinter"
+    MB.npl_ratio.UNI: "Unicaja"
+
+  coste_riesgo:
+    MB.coste_riesgo.SAN: "Santander"
+    MB.coste_riesgo.BBVA: "BBVA"
+    MB.coste_riesgo.CABK: "CaixaBank"
+    MB.coste_riesgo.SAB: "Sabadell"
+    MB.coste_riesgo.BKT: "Bankinter"
+    MB.coste_riesgo.UNI: "Unicaja"
+
+  cobertura_morosidad:
+    MB.cobertura_morosidad.SAN: "Santander"
+    MB.cobertura_morosidad.BBVA: "BBVA"
+    MB.cobertura_morosidad.CABK: "CaixaBank"
+    MB.cobertura_morosidad.SAB: "Sabadell"
+    MB.cobertura_morosidad.BKT: "Bankinter"
+    MB.cobertura_morosidad.UNI: "Unicaja"
+
+  cet1_fully_loaded:
+    MB.cet1_fully_loaded.SAN: "Santander"
+    MB.cet1_fully_loaded.BBVA: "BBVA"
+    MB.cet1_fully_loaded.CABK: "CaixaBank"
+    MB.cet1_fully_loaded.SAB: "Sabadell"
+    MB.cet1_fully_loaded.BKT: "Bankinter"
+    MB.cet1_fully_loaded.UNI: "Unicaja"
+
+  lcr:
+    MB.lcr.SAN: "Santander"
+    MB.lcr.BBVA: "BBVA"
+    MB.lcr.CABK: "CaixaBank"
+    MB.lcr.SAB: "Sabadell"
+    MB.lcr.BKT: "Bankinter"
+    MB.lcr.UNI: "Unicaja"
+
+  ltd:
+    MB.ltd.SAN: "Santander"
+    MB.ltd.BBVA: "BBVA"
+    MB.ltd.CABK: "CaixaBank"
+    MB.ltd.SAB: "Sabadell"
+    MB.ltd.BKT: "Bankinter"
+    MB.ltd.UNI: "Unicaja"
+
+  coste_depósitos_esp:
+    MB.coste_depósitos_esp.SAN: "Santander (España)"
+    MB.coste_depósitos_esp.BBVA: "BBVA (España)"
+    MB.coste_depósitos_esp.CABK: "CaixaBank (España)"
+    MB.coste_depósitos_esp.SAB: "Sabadell (España)"
+    MB.coste_depósitos_esp.BKT: "Bankinter (España)"
+    MB.coste_depósitos_esp.UNI: "Unicaja (España)"
+
+  tipos_crédito_esp:
+    MB.tipos_crédito_esp.SAN: "Santander (España)"
+    MB.tipos_crédito_esp.BBVA: "BBVA (España)"
+    MB.tipos_crédito_esp.CABK: "CaixaBank (España)"
+    MB.tipos_crédito_esp.SAB: "Sabadell (España)"
+    MB.tipos_crédito_esp.BKT: "Bankinter (España)"
+    MB.tipos_crédito_esp.UNI: "Unicaja (España)"
+
+  margen_clientes_esp:
+    MB.margen_clientes_esp.SAN: "Santander (España)"
+    MB.margen_clientes_esp.BBVA: "BBVA (España)"
+    MB.margen_clientes_esp.CABK: "CaixaBank (España)"
+    MB.margen_clientes_esp.SAB: "Sabadell (España)"
+    MB.margen_clientes_esp.BKT: "Bankinter (España)"
+    MB.margen_clientes_esp.UNI: "Unicaja (España)"
+
+  crédito_esp:
+    MB.crédito_esp.SAN: "Santander (España)"
+    MB.crédito_esp.BBVA: "BBVA (España)"
+    MB.crédito_esp.CABK: "CaixaBank (España)"
+    MB.crédito_esp.SAB: "Sabadell (España)"
+    MB.crédito_esp.BKT: "Bankinter (España)"
+    MB.crédito_esp.UNI: "Unicaja (España)"
+
+  depósitos_esp:
+    MB.depósitos_esp.SAN: "Santander (España)"
+    MB.depósitos_esp.BBVA: "BBVA (España)"
+    MB.depósitos_esp.CABK: "CaixaBank (España)"
+    MB.depósitos_esp.SAB: "Sabadell (España)"
+    MB.depósitos_esp.BKT: "Bankinter (España)"
+    MB.depósitos_esp.UNI: "Unicaja (España)"

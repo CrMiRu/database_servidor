@@ -25,7 +25,12 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# UPDATED PATH LOGIC:
+# 1. Path(__file__) is this script
+# 2. .parent is 'series_EBA'
+# 3. .parent.parent is 'upload_excel_to_database'
+# 4. .parent.parent.parent is 'DATABASE_SERVIDOR' (The true root)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(BASE_DIR))
 
 from database.connection import get_db_connection

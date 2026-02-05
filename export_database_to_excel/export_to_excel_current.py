@@ -5,14 +5,19 @@ from pathlib import Path
 from datetime import datetime
 
 # 1. Get Absolute Paths
+# Path(__file__) is 'export_to_excel_current.py'
+# .parent is 'export_database_to_excel'
+# .parent.parent is 'DATABASE_SERVIDOR' (The Root)
 BASE_DIR = Path(__file__).resolve().parent.parent
 EXPORTS_DIR = Path(__file__).resolve().parent
 
 # 2. Add root to sys.path so we can find the 'database' package
-sys.path.append(str(BASE_DIR))
+# This ensures that 'from database.connection...' works correctly
+if str(BASE_DIR) not in sys.path:
+    sys.path.append(str(BASE_DIR))
 
-# Import your operations and the config loader to get the DB name
-from database.operations import get_all_series
+# Now the imports will find the 'database' folder in BASE_DIR
+from database.CRUD_operations import get_all_series
 from database.connection import load_db_config
 
 

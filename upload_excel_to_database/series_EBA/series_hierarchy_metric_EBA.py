@@ -11,10 +11,15 @@ import sys
 from pathlib import Path
 from typing import Optional, Dict, Any
 
-# Setup paths
-BASE_DIR = Path(__file__).resolve().parent.parent
+# 1. Correctly step back 3 levels to reach 'DATABASE_SERVIDOR'
+# Path(__file__) is the script
+# .parent is 'series_EBA'
+# .parent.parent is 'upload_excel_to_database'
+# .parent.parent.parent is 'DATABASE_SERVIDOR'
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(BASE_DIR))
 
+# Now this import will work because 'database' is a folder in BASE_DIR
 from database.connection import get_db_connection
 
 
@@ -101,7 +106,9 @@ def sync_hierarchy(cur, data: Dict[str, Any], parent_id: Optional[int] = None):
             sync_hierarchy(cur, value, node_id)
         else:
             # Replaced ON CONFLICT with manual function
-            get_or_create_metric(cur, key, {"friendly_name": value}, parent_id)
+            # {"name": value} is a placeholder for dimensions.
+            # El visualizador mira específicamente la dimensión "name" para mostrar el nombre del metric
+            get_or_create_metric(cur, key, {"name": value}, parent_id)
 
 
 def run_setup():

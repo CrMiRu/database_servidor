@@ -1,4 +1,4 @@
-from database.operations import (
+from database.CRUD_operations import (
     initialize_table,
     insert_series,
     get_all_series,

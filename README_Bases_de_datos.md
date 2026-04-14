@@ -1239,6 +1239,227 @@ metricas bancos:
     JOIN metrics m
         ON v.metric_id = m.id;
 ```
+## Migraciones de base de datos con Alembic
+
+### ¿Qué es una migración?
+
+Una migración es un archivo con instrucciones SQL que describe un **cambio concreto en la estructura** de la base de datos (crear una tabla, añadir una columna, modificar un tipo de dato...). Cada migración tiene:
+
+- Un **upgrade**: el SQL para aplicar el cambio.
+- Un **downgrade**: el SQL para deshacerlo.
+
+Estos archivos se guardan en el repositorio git junto al resto del código. Así, el historial de cambios de la estructura de la base de datos queda versionado exactamente igual que el código.
+
+### ¿Por qué usar migraciones?
+
+Cuando modificamos la base de datos directamente desde pgAdmin (o cualquier otra herramienta), cada cambio se aplica directamente y **no queda registrado en ningún sitio**. Esto genera problemas:
+
+| Sin migraciones | Con migraciones |
+|---|---|
+| Cambios directos sin registro | Cada cambio es un archivo en git |
+| Imposible reproducir el entorno | `alembic upgrade head` reconstruye toda la BD |
+| Sin vuelta atrás | `alembic downgrade -1` deshace el último cambio |
+| Sin coordinación | Git muestra quién cambió qué y cuándo |
+
+### ¿Qué herramienta usamos?
+
+**Alembic** es la herramienta que gestiona las migraciones. Mantiene una tabla interna en la base de datos (`alembic_version`) con el identificador de la última migración aplicada. Cuando le pides que actualice, compara esa tabla con los archivos que hay en la carpeta de migraciones y ejecuta los que falten, en orden.
+
+### Importante: migraciones vs. subida de datos
+
+Las migraciones gestionan **cambios en la estructura** (DDL: CREATE TABLE, ALTER TABLE, ADD COLUMN...), **no la subida de datos**. Los scripts de subida de datos (`upload_series_EBA.py`, `upload_series_metricas_bancos.py`, etc.) siguen funcionando exactamente igual que antes. Son cosas independientes:
+
+| Qué | Quién lo hace | Ejemplo |
+|---|---|---|
+| Cambios de estructura (esquema) | Migraciones Alembic | Añadir una columna `description` a la tabla `metrics` |
+| Subida de datos (filas) | Scripts de upload existentes | Insertar valores de EBA desde un Excel |
+
+### Estructura de archivos de Alembic en este proyecto
+
+```
+database_servidor/
+├── alembic.ini                          # Configuración de Alembic
+├── alembic/
+│   ├── env.py                           # Lee la conexión del .env + database.yaml
+│   ├── script.py.mako                   # Plantilla para nuevas migraciones
+│   └── versions/                        # Aquí viven las migraciones
+│       └── 0001_initial_schema.py       # Baseline: tablas actuales
+```
+
+- **`alembic.ini`**: archivo de configuración general. No hace falta tocarlo.
+- **`alembic/env.py`**: lee la conexión a la base de datos desde los mismos archivos que ya usa el proyecto (`.env` y `config/database.yaml`), así no hay que duplicar la configuración.
+- **`alembic/script.py.mako`**: plantilla que Alembic usa para generar nuevos archivos de migración.
+- **`alembic/versions/`**: carpeta donde se almacenan todas las migraciones. Cada archivo es un cambio concreto en la estructura de la base de datos.
+
+### La migración inicial: `0001_initial_schema.py`
+
+La primera migración del proyecto es especial. No introduce ningún cambio nuevo — es una **foto de cómo están las tablas hoy**. Su función es servir de punto de partida para que todas las migraciones futuras se encadenen a partir de ella.
+
+Su `upgrade()` contiene los `CREATE TABLE IF NOT EXISTS` de las 4 tablas actuales (`hierarchy`, `metrics`, `values`, `demo_series`), y su `downgrade()` las elimina en orden inverso.
+
+Esta migración tiene **dos usos distintos** según el escenario:
+
+| Escenario | Qué hacer | Qué ocurre |
+|---|---|---|
+| **Base de datos existente** (ya tiene las tablas) | `uv run --active alembic stamp 0001` | No ejecuta SQL. Solo marca `0001` como aplicada en `alembic_version`. Es un "bookmark". |
+| **Base de datos nueva** (vacía, sin tablas) | `uv run --active alembic upgrade head` | Ejecuta el `upgrade()` y crea las 4 tablas desde cero. |
+
+En nuestro caso (la BD ya existe), el comando es `stamp`, no `upgrade`.
+
+### Ejemplo completo: añadir una columna a una tabla
+
+Supongamos que queremos añadir una columna `description TEXT` a la tabla `metrics`. Este es el proceso completo paso a paso.
+
+**1. Generar el archivo de migración:**
+
+```bash
+uv run --active alembic revision -m "add_description_to_metrics"
+```
+
+Esto crea un archivo nuevo en `alembic/versions/` con un nombre autogenerado, por ejemplo:
+
+```
+alembic/versions/a3f7b2c1d4e5_add_description_to_metrics.py
+```
+
+El archivo viene pre-rellenado desde la plantilla `script.py.mako`, con las funciones `upgrade()` y `downgrade()` vacías y un campo `down_revision` que apunta automáticamente a la migración anterior:
+
+```python
+revision: str = "a3f7b2c1d4e5"
+down_revision: Union[str, None] = "0001"  # apunta a la migración anterior
+
+def upgrade() -> None:
+    pass
+
+def downgrade() -> None:
+    pass
+```
+
+**2. Editar el archivo con el SQL concreto:**
+
+```python
+def upgrade() -> None:
+    op.execute("ALTER TABLE metrics ADD COLUMN description TEXT;")
+
+def downgrade() -> None:
+    op.execute("ALTER TABLE metrics DROP COLUMN description;")
+```
+
+**3. Aplicar la migración:**
+
+```bash
+uv run --active alembic upgrade head
+```
+
+Alembic se conecta a la BD, ve que `alembic_version` está en `0001`, encuentra la nueva migración `a3f7b2c1d4e5`, ejecuta su `upgrade()` (añade la columna) y actualiza `alembic_version` al nuevo hash.
+
+**4. Guardar en git:**
+
+```bash
+git add alembic/versions/
+git commit -m "migration: add description to metrics"
+```
+
+**Si quieres deshacerlo:**
+
+```bash
+uv run --active alembic downgrade -1
+```
+
+Ejecuta el `downgrade()` (elimina la columna) y mueve `alembic_version` de vuelta a `0001`.
+
+**La cadena de migraciones queda así:**
+
+```
+0001_initial_schema.py                              (baseline, tablas actuales)
+        │
+        ▼
+a3f7b2c1d4e5_add_description_to_metrics.py          (el nuevo cambio)
+        │
+        ▼
+   ... futuras migraciones ...
+```
+
+**Resumen de qué se crea/modifica:**
+
+| Qué | Acción |
+|---|---|
+| `alembic/versions/<hash>_add_description_to_metrics.py` | **Archivo nuevo** (creado por `alembic revision`, editado por ti) |
+| Tabla `metrics` en la BD | Recibe la nueva columna al ejecutar `upgrade head` |
+| Tabla `alembic_version` en la BD | Se actualiza de `0001` al nuevo hash |
+| Todo lo demás | No se toca |
+
+### Workflow: cómo hacer un cambio en la estructura de la base de datos
+
+Cada vez que necesites modificar la estructura de la base de datos (añadir una tabla, una columna, cambiar un tipo de dato...), sigue estos cuatro pasos:
+
+**Paso 1 — Crear la migración**
+
+```bash
+uv run --active alembic revision -m "descripcion_breve_del_cambio"
+```
+
+Esto genera un archivo Python nuevo en `alembic/versions/` con dos funciones vacías: `upgrade()` y `downgrade()`.
+
+**Paso 2 — Escribir el SQL**
+
+Abre el archivo generado y rellena las dos funciones. Por ejemplo, para añadir una columna `description` a la tabla `metrics`:
+
+```python
+def upgrade() -> None:
+    op.execute("ALTER TABLE public.metrics ADD COLUMN description text;")
+
+def downgrade() -> None:
+    op.execute("ALTER TABLE public.metrics DROP COLUMN description;")
+```
+
+**Regla de oro**: el `downgrade` siempre debe dejar la BD exactamente como estaba antes del `upgrade`. Son operaciones inversas.
+
+**Paso 3 — Aplicar la migración**
+
+```bash
+uv run --active alembic upgrade head
+```
+
+`head` significa "aplica todas las migraciones pendientes hasta la más reciente".
+
+**Paso 4 — Guardar en git**
+
+```bash
+git add alembic/versions/
+git commit -m "migration: descripcion del cambio"
+```
+
+### Comandos útiles
+
+Todos los comandos llevan `uv run --active` delante:
+
+| Comando | Qué hace |
+|---|---|
+| `alembic current` | Muestra en qué migración está la BD ahora mismo |
+| `alembic history` | Lista todas las migraciones en orden |
+| `alembic upgrade head` | Aplica todas las migraciones pendientes |
+| `alembic upgrade +1` | Aplica solo la siguiente migración |
+| `alembic downgrade -1` | Deshace la última migración aplicada |
+| `alembic downgrade base` | Deshace todas las migraciones (deja la BD vacía de estructura) |
+| `alembic stamp <revision>` | Marca una migración como aplicada sin ejecutarla (útil para bases de datos que ya existen) |
+
+### Configuración inicial en una base de datos que ya tiene las tablas
+
+Si la base de datos ya tiene las tablas creadas (que es nuestro caso), hay que decirle a Alembic que la migración inicial (`0001`) ya está aplicada, sin volver a ejecutarla:
+
+```bash
+uv run --active alembic stamp 0001
+```
+
+Esto crea la tabla `alembic_version` con el valor `0001`, indicando que esa migración ya fue aplicada. A partir de ahí, solo se ejecutarán las migraciones nuevas.
+
+### Si algo sale mal
+
+- Si una migración **falla a medias**, Alembic hace rollback automáticamente (deshace todo lo que hizo en esa migración). La BD queda en el estado anterior.
+- Si una migración **se aplicó correctamente pero quieres deshacerla**, usa `alembic downgrade -1`.
+- Si hay un **error en el SQL** de la migración, corrige el archivo y vuelve a ejecutar `alembic upgrade head`.
+
 ## Tutoriales en youtube
 
 1. Cómo conectarse e interactuar con la base de datos a través de Python 
